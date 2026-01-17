@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  background: #0f172a;
+  color: #e5e7eb;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #020617;
+  border-bottom: 1px solid #1e293b;
+}
+
+button {
+  background: #38bdf8;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0ea5e9;
+}
+
+main {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.device-card {
+  background: #020617;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid #1e293b;
+  transition: transform 0.2s ease;
+}
+
+.device-card:hover {
+  transform: translateY(-4px);
+}
+
+.device-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.device-card p {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.loading {
+  opacity: 0.6;
+}
