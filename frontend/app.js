@@ -10,8 +10,8 @@ async function scanNetwork() {
     const res = await fetch("http://localhost:3000/api/scan");
     const data = await res.json();
 
-    if (data.devices.length === 0) {
-      container.innerHTML = "<p>No devices found</p>";
+    if (!data.devices || data.devices.length === 0) {
+      container.innerHTML = "<p class='loading'>No devices found. Make sure your devices are online and try again.</p>";
       return;
     }
 
@@ -25,13 +25,21 @@ async function scanNetwork() {
         <h3>Device</h3>
         <p><strong>IP:</strong> ${device.ip}</p>
         <p><strong>MAC:</strong> ${device.mac}</p>
-        <p><strong>Type:</strong> ${device.type}</p>
+        <p>
+          <strong>Type:</strong> 
+          <span title="Currently showing 'unknown'. Future update: detect phone, PC, router, etc.">
+            ${device.type}
+          </span>
+        </p>
       `;
+
+      // Disable all clicks on card
+      card.addEventListener("click", (e) => e.preventDefault());
 
       container.appendChild(card);
     });
   } catch (err) {
-    container.innerHTML = "<p>Error scanning network</p>";
+    container.innerHTML = "<p class='loading'>Error scanning network. Make sure backend is running.</p>";
     console.error(err);
   }
 }

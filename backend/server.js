@@ -1,8 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 const scanNetwork = require("./scanner");
 
 const app = express();
 const PORT = 3000;
+
+// Enable CORS
+app.use(cors());
 
 // Test route
 app.get("/", (req, res) => {
