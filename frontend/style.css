@@ -65,3 +65,44 @@ main {
 .loading {
   opacity: 0.6;
 }
+
+
+/* Highlight new devices */
+.new-device {
+  border: 2px solid #4ade80; /* bright green */
+  animation: highlight 1s ease;
+}
+
+@keyframes highlight {
+  0% { transform: scale(1.05); }
+  50% { transform: scale(1); }
+  100% { transform: scale(1.02); }
+}
+
+/*controls*/
+.controls {
+  display: flex;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.controls button {
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #4ade80;
+  color: #fff;
+}
+
+.controls button:hover {
+  background-color: #16a34a;
+}
+
+.controls input[type="color"] {
+  cursor: pointer;
+  border: none;
+  width: 35px;
+  height: 35px;
+  padding: 0;
+}

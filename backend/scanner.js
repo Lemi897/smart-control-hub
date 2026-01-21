@@ -9,13 +9,22 @@ const brandPrefixes = {
   "ac:bc:32": "PC/Laptop",
 };
 
+// Device icons for frontend
+const typeIcons = {
+  "Router": "🖧",
+  "PC/Laptop": "💻",
+  "Apple": "🍎",
+  "Samsung": "📱",
+  "Raspberry Pi": "🟢",
+  "unknown": "❓"
+};
+
 function getDeviceType(mac) {
   if (!mac) return "unknown";
 
   const prefix = mac.toLowerCase().slice(0, 8); // first 3 bytes
   if (brandPrefixes[prefix]) return brandPrefixes[prefix];
 
-  // simple rule: if IP ends with .1 → router
   return "unknown";
 }
 
@@ -35,10 +44,12 @@ function scanNetwork() {
         if (match) {
           const ip = match[1];
           const mac = match[2];
+          const type = getDeviceType(mac) === "unknown" && ip.endsWith(".1") ? "Router" : getDeviceType(mac);
           devices.push({
             ip,
             mac,
-            type: getDeviceType(mac) === "unknown" && ip.endsWith(".1") ? "Router" : getDeviceType(mac),
+            type,
+            icon: typeIcons[type] || "❓"
           });
         }
       });
